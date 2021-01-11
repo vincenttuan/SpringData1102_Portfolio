@@ -43,6 +43,9 @@ public class InvestorController {
         investor.setEmail(jsonMap.get("email"));
         investor.setBalance(Integer.parseInt(jsonMap.get("balance")));
         investor.setPass(Boolean.FALSE);
+        // 設定認證碼
+        investor.setCode(Integer.toHexString(investor.hashCode()));
+        
         // 存檔 Investor
         service.getInvestorRepository().save(investor);
         // 存檔 Watch

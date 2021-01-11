@@ -24,11 +24,11 @@ import javax.mail.Transport;
 
 public class SendEmail {
     public static void main(String[] args) throws Exception {
-        String personal = ""; // 發送者姓名
-        String to = ""; // 發送給誰 ? 若有多筆", "號隔開
-        String title = ""; // 信件 title
+        String personal = "來珠"; // 發送者姓名
+        String to = "vincenttuan@gmail.com"; // 發送給誰 ? 若有多筆", "號隔開
+        String title = "來珠體驗"; // 信件 title
         // 信件內容 
-        String html = "";
+        String html = "<h1>好棒棒</h1>";
         
         SendEmail sendEmail = new SendEmail();
         sendEmail.submit(personal, to, title, html);
@@ -36,8 +36,8 @@ public class SendEmail {
     
     public void submit(String personal, String to, String title, String html) throws Exception {
         // Gmail 與 授權碼(非 Google 密碼)
-        final String googleGmail = "xxx@gmail.com"; // 你的 Gmail
-        final String authPassword = "xxxxxxxxxxxxxx"; // 你的授權碼
+        final String googleGmail = "vincenttuan@gmail.com"; // 你的 Gmail
+        final String authPassword = "heokzojzsieyrsdu"; // 你的授權碼
 
         // smpt 設定資訊
         Properties prop = new Properties();
@@ -60,7 +60,7 @@ public class SendEmail {
         Message message = new MimeMessage(session);
         
         // 發文者 一定會是你的 google email
-        InternetAddress ia = new InternetAddress("xxx@gmail.com"); // 你的 Gmail
+        InternetAddress ia = new InternetAddress("vincenttuan@gmail.com"); // 你的 Gmail
         ia.setPersonal(personal);
         message.setFrom(ia);
         

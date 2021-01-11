@@ -25,9 +25,28 @@ public class InvestorController {
     @Autowired
     private PortfolioService service;
     
+    // 查詢全部
     @GetMapping(value = {"/", "/query"})
     public List<Investor> query() {
         return service.getInvestorRepository().findAll();
+    }
+    
+    // 新增
+    @PostMapping(value = {"/", "/add"})
+    public Investor add(@RequestBody Map<String, String> jsonMap) {
+        Investor investor = new Investor();
+        investor.setUsername(jsonMap.get("username"));
+        investor.setPassword(jsonMap.get("password"));
+        investor.setEmail(jsonMap.get("email"));
+        investor.setBalance(Integer.parseInt(jsonMap.get("balance")));
+        investor.setPass(Boolean.FALSE);
+        // 存檔 Investor
+        service.getInvestorRepository().save(investor);
+        // 存檔 Watch
+        Watch watch = new Watch(investor.getUsername() + "投資組合", investor);
+        service.getWatchRepository().save(watch);
+        
+        return investor;
     }
     
 }

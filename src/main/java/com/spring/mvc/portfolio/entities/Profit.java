@@ -1,3 +1,5 @@
+package com.spring.mvc.portfolio.entities;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

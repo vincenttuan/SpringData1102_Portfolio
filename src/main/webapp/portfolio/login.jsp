@@ -20,8 +20,10 @@
         <script>
             $(document).ready(function () {
                 $("#add").on("click", function () {
-                    var jsonObj = $('#myform').serializeObject(); // 將表單資料封裝序列
+                    var jsonObj = $('#regform').serializeObject(); // 將表單資料封裝序列
+                    alert(jsonObj);
                     var jsonStr = JSON.stringify(jsonObj); // 將物件資料轉為 Json 字串
+                    alert(jsonStr);
                     $.ajax({
                         url: "${pageContext.request.contextPath}/mvc/portfolio/investor/",
                         type: "POST",
@@ -35,7 +37,7 @@
                         success: function (resposeJsonObject) {
                             console.log(JSON.stringify(resposeJsonObject));
                             alert('註冊成功！請收信~');
-                            $('#myform').get(0).reset(); // 表單重置
+                            $('#regform').get(0).reset(); // 表單重置
                         },
                         error: function (e, textStatus) {
                             console.log(e);
@@ -69,7 +71,7 @@
                 </form>
             </td>
             <td valign="top">
-                <form id="myform" class="pure-form" method="post" action="${pageContext.request.contextPath}/mvc/portfolio/login">
+                <form id="regform" class="pure-form" method="post" action="${pageContext.request.contextPath}/mvc/portfolio/login">
                     <fieldset>
                         <legend><h1><img src="${pageContext.request.contextPath}/images/user.png" width="40" valign="middle"> Register Form</h1></legend>
                         <input type="text" name="username" placeholder="Username"><p />

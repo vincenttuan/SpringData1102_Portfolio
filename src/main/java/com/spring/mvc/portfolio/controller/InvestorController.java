@@ -25,6 +25,9 @@ public class InvestorController {
     @Autowired
     private PortfolioService service;
     
+    @Autowired
+    private EmailService emailService;
+    
     // 查詢全部
     @GetMapping(value = {"/", "/query"})
     public List<Investor> query() {
@@ -45,6 +48,8 @@ public class InvestorController {
         // 存檔 Watch
         Watch watch = new Watch(investor.getUsername() + "投資組合", investor);
         service.getWatchRepository().save(watch);
+        // 發送認證信件
+        emailService.send(investor);
         
         return investor;
     }

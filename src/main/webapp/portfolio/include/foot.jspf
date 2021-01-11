@@ -1,0 +1,2 @@
+<%@ page pageEncoding="UTF-8" %>
+<script src="${pageContext.request.contextPath}/portfolio/js/ui.js"></script>  

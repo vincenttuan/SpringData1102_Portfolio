@@ -18,8 +18,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/portfolio/investor")
 public class InvestorController {
     
+    @Autowired
+    private PortfolioService service;
     
+    @GetMapping(value = {"/", "/query"})
+    public List<Investor> query() {
+        return service.getInvestorRepository().findAll();
+    }
     
 }

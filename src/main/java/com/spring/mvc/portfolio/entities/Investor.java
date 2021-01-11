@@ -13,25 +13,38 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Investor implements Serializable {
+
     @Id
     @GeneratedValue
     private Integer id;
+    
     @Column
     private String username;
+    
     @Column
     private String password;
+    
     @Column
     private String email;
-    @Column
-    private Integer balance; // 投資金額
-    @Column
-    private String code; // email 驗證碼
-    @Column
-    private Boolean pass; // email 驗證碼通過 pass= true
     
-    @OneToMany
-    private Set<Watch> watchs;
+    @Column
+    private Integer balance;
+    
+    @Column
+    private String code;
+    
+    @Column
+    private Boolean pass;
+    
 
+    @OneToMany(cascade=CascadeType.PERSIST, mappedBy="investor", fetch = FetchType.EAGER)
+    //@JsonIgnoreProperties("investor")
+    private Set<Portfolio> portfolios;
+    
+    @OneToMany(cascade=CascadeType.PERSIST, mappedBy="investor", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("investor")
+    private Set<Watch> watchs;
+    
     public Investor() {
     }
 
@@ -40,8 +53,8 @@ public class Investor implements Serializable {
         this.password = password;
         this.email = email;
         this.balance = balance;
+        pass = true;
     }
-    
     
     public Integer getId() {
         return id;
@@ -75,6 +88,22 @@ public class Investor implements Serializable {
         this.email = email;
     }
 
+    public Set<Portfolio> getPortfolios() {
+        return portfolios;
+    }
+
+    public void setPortfolios(Set<Portfolio> portfolios) {
+        this.portfolios = portfolios;
+    }
+
+    public Set<Watch> getWatchs() {
+        return watchs;
+    }
+
+    public void setWatchs(Set<Watch> watchs) {
+        this.watchs = watchs;
+    }
+
     public Integer getBalance() {
         return balance;
     }
@@ -99,13 +128,9 @@ public class Investor implements Serializable {
         this.pass = pass;
     }
 
-    public Set<Watch> getWatchs() {
-        return watchs;
+    @Override
+    public String toString() {
+        return "Investor{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", balance=" + balance + ", code=" + code + ", pass=" + pass + '}';
     }
-
-    public void setWatchs(Set<Watch> watchs) {
-        this.watchs = watchs;
-    }
-    
     
 }

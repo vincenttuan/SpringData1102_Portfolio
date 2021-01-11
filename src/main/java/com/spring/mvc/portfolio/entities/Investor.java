@@ -30,9 +30,6 @@ public class Investor implements Serializable {
     private Boolean pass; // email 驗證碼通過 pass= true
     
     @OneToMany
-    private Set<Portfolio> portfolios;
-    
-    @OneToMany
     private Set<Watch> watchs;
 
     public Investor() {
@@ -100,14 +97,6 @@ public class Investor implements Serializable {
 
     public void setPass(Boolean pass) {
         this.pass = pass;
-    }
-
-    public Set<Portfolio> getPortfolios() {
-        return portfolios;
-    }
-
-    public void setPortfolios(Set<Portfolio> portfolios) {
-        this.portfolios = portfolios;
     }
 
     public Set<Watch> getWatchs() {

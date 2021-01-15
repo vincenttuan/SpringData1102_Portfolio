@@ -9,13 +9,15 @@ import org.hibernate.annotations.Subselect;
 
 @Entity
 @Immutable
-//@Subselect("SELECT p.investor_id as id, c.name as name, SUM(p.amount * s.price) as subtotal " +
-//           "FROM Classify c, Portfolio p, TStock s " +
-//           "WHERE p.tStock_id = s.id AND s.classify_id = c.id " +
-//           "GROUP BY p.investor_id, c.name") // p.investor.id=:id AND 
-@Table(name = "Asset")
+@Subselect("SELECT p.investor_id as id, c.name as name, SUM(p.amount * s.price) as subtotal " +
+           "FROM Classify c, Portfolio p, TStock s " +
+           "WHERE p.tStock_id = s.id AND s.classify_id = c.id " +
+           "GROUP BY p.investor_id, c.name") // p.investor.id=:id AND 
 public class Asset {
     @Id
+    private Integer idd;
+    
+    @Column
     private Integer id;
     
     @Column

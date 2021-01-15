@@ -8,7 +8,7 @@ import org.hibernate.annotations.Subselect;
 
 @Entity
 @Immutable
-@Subselect("SELECT p.investor_id as id, c.name as name, SUM(p.amount * (s.price-p.cost)) as subtotal "
+@Subselect("SELECT ROW_NUMBER() OVER() AS id, p.investor_id as invid, c.name as name, SUM(p.amount * (s.price-p.cost)) as subtotal "
         + "FROM Classify c, Portfolio p, TStock s "
         + "WHERE p.tStock_id = s.id AND s.classify_id = c.id "
         + "GROUP BY p.investor_id, c.name") // p.investor.id=:id AND 
@@ -16,6 +16,9 @@ import org.hibernate.annotations.Subselect;
 public class Profit {
     @Id
     private Integer id;
+    
+    @Column
+    private Integer invid;
     
     @Column
     private String name;
@@ -45,6 +48,14 @@ public class Profit {
 
     public void setSubtotal(Double subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public Integer getInvid() {
+        return invid;
+    }
+
+    public void setInvid(Integer invid) {
+        this.invid = invid;
     }
 
     

@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository(value = "assetRepository")
 public interface AssetRepository extends JpaRepository<Asset, Integer>{
-    @Query(value = "SELECT a FROM Asset a WHERE a.id = ?1")
-    public List<Asset> findById(@Param("id") Integer id);
+    @Query(value = "SELECT a FROM Asset a WHERE a.invid = ?1")
+    public List<Asset> findByInvid(@Param("invid") Integer invid);
     
-    @Query(value = "SELECT a FROM Asset a")
-    public List<Asset> findBy();
 }

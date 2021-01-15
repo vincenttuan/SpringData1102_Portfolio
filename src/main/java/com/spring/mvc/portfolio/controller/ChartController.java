@@ -20,14 +20,13 @@ public class ChartController {
     @Autowired
     private ProfitRepository profitRepository;
     
-    @GetMapping(value = {"/asset/{id}"})
-    public List asset(@PathVariable("id") Optional<Integer> id) {
-        //return assetRepository.findById(id.get());
-        return assetRepository.findBy();
+    @GetMapping(value = {"/asset/{invid}"})
+    public List asset(@PathVariable("invid") Optional<Integer> invid) {
+        return assetRepository.findByInvid(invid.get());
     }
     
-    @GetMapping(value = {"/profit/{id}"})
-    public List profit(@PathVariable("id") Optional<Integer> id) {
-        return profitRepository.findById(id.get());
+    @GetMapping(value = {"/profit/{invid}"})
+    public List profit(@PathVariable("invid") Optional<Integer> invid) {
+        return profitRepository.findByInvId(invid.get());
     }
 }

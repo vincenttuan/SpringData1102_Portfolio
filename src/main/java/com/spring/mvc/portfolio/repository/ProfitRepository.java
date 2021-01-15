@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository(value = "profitRepository")
 public interface ProfitRepository extends JpaRepository<Profit, Integer>{
-    @Query(value = "SELECT p FROM Profit p WHERE p.id = ?1")
-    public List<Profit> findById(@Param("id") Integer id);
+    @Query(value = "SELECT p FROM Profit p WHERE p.invid = ?1")
+    public List<Profit> findByInvId(@Param("invid") Integer invid);
 }

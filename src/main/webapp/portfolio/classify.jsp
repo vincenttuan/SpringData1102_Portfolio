@@ -68,7 +68,6 @@
                 // 資料列表
                 table_list();
             });
-
             function table_list() {
                 $.get("${pageContext.request.contextPath}/mvc/portfolio/classify/", function (datas, status) {
                     console.log("Datas: " + datas);

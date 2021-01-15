@@ -73,7 +73,6 @@
                 // 資料列表
                 table_list();
             });
-
             function classify_list() {
                 $.get("${pageContext.request.contextPath}/mvc/portfolio/classify/", function (datas, status) {
                     console.log("Datas: " + datas);
@@ -82,7 +81,6 @@
                     });
                 });
             }
-
             function table_list() {
                 $.get("${pageContext.request.contextPath}/mvc/portfolio/tstock/", function (datas, status) {
                     console.log("Datas: " + datas);

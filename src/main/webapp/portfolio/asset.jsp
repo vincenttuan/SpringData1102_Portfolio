@@ -140,7 +140,7 @@
                     cache: false,
                     processData: false,
                     success: function (datas) {
-                        console.log(datas);
+                        console.log(JSON.stringify(datas));
                         if (datas != 0 && datas.length > 0) {
                             drawAssetChart(datas);
                         }
@@ -166,6 +166,7 @@
                 var data = [];
                 var Header = ['Classify', 'AssetValue'];
                 data.push(Header);
+                alert(JSON.stringify(datas));
                 for (var i = 0; i < datas.length; i++) {
                     var temp = [];
                     temp.push(datas[i].name);

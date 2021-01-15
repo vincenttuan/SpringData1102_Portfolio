@@ -22,7 +22,8 @@ public class ChartController {
     
     @GetMapping(value = {"/asset/{id}"})
     public List asset(@PathVariable("id") Optional<Integer> id) {
-        return assetRepository.findById(id.get());
+        //return assetRepository.findById(id.get());
+        return assetRepository.findBy();
     }
     
     @GetMapping(value = {"/profit/{id}"})

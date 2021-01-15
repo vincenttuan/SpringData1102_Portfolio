@@ -15,9 +15,6 @@ import org.hibernate.annotations.Subselect;
            "GROUP BY p.investor_id, c.name") // p.investor.id=:id AND 
 public class Asset {
     @Id
-    private Integer idd;
-    
-    @Column
     private Integer id;
     
     @Column

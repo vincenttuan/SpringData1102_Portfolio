@@ -7,6 +7,7 @@ import com.spring.mvc.portfolio.service.EmailService;
 import com.spring.mvc.portfolio.service.PortfolioService;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +33,13 @@ public class InvestorController {
     @GetMapping(value = {"/", "/query"})
     public List<Investor> query() {
         return service.getInvestorRepository().findAll();
+    }
+    
+    // 單筆查詢(根據 id)
+    @GetMapping(value = {"/{id}"})
+    public Investor get(@PathVariable("id") Optional<Integer> id) {
+        Investor investor = service.getInvestorRepository().findOne(id.get());
+        return investor;
     }
     
     // 新增
